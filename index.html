@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Inclui as bibliotecas jQuery e jQuery Mask Plugin -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script src="https://www.tabelafipebrasil.com/api/js/tabelafipe-widget.min.js"></script>
+    <title>Projeto</title>
+  </head>
+  <body>
+    <!-- Cabeçalho de informações do sistema -->
+    <header>
+      <div class="title">
+        <h2>Sistema de Gestão de Veículos</h2>
+      </div>
+      <div class="banner">
+        <img src="./img/tipos-de-carros-capa.png" alt="y" />
+      </div>
+    </header>
+    <!-- Opções para adicionar um novo item -->
+    <section class="newItem">
+      <input type="text" id="newInput" placeholder="Adicionar modelo" />
+      <input type="text" id="newAno" placeholder="Adicionar ano" />
+      <input type="text" id="newMarca" placeholder="Adicionar marca:" />
+      <input type="text" id="newQuantity" placeholder="Quantidade:" />
+      <input type="text" id="newPrice" placeholder="Valor:" />
+      <span onclick="newItem()" class="addBtn">Adicionar</span>
+    </section>
+
+    <!-- Tabela com items existentes -->
+    <section>
+      <!-- Busca Tabela Fipe -->
+      <div class="tfb-query fixed-table" data-style="1"></div>
+      <div class="items">
+        <table id="myTable">
+          <tr>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Marca</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/126/126468.png"
+                width="20px"
+                height="20px"
+              />
+            </th>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <!-- Criação do botão de exportação da tabela para excel -->
+    <section class="items">
+      <div>
+        <button id="sheetjsexport"><b>Exportar para o Excel</b></button>
+      </div>
+    </section>
+    <!-- Adicione o script para aplicar a máscara ao campo de entrada do CPF -->
+    <script>
+      $(document).ready(function () {
+        $("#newPrice").maskMoney({
+          prefix: "R$ ",
+          allowNegative: true,
+          thousands: ".",
+          decimal: ",",
+          affixesStay: false,
+        });
+      });
+    </script>
+    <!-- Códicos javascript -->
+    <script
+      lang="javascript"
+      src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"
+    ></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
